@@ -5,14 +5,10 @@ object Day02 {
     data class PasswordPolicy(var range: IntRange, var char: Char)
 
     fun solve(lines: List<String>): Int {
-        return lines.map {
-            val match = Regex("(\\d)-(\\d) (\\w): (\\w+)").find(it)
-            if (match != null) {
-                val (rangeStart, rangeEnd, char, password) = match.destructured
-
-                isValid(password, char, rangeStart.toInt()..rangeEnd.toInt())
-            } else false
-        }.filter { isValid -> isValid }.size
+        val match = Regex("^(\\d+)-(\\d+) (\\w): (\\w+)$")
+        return lines.mapNotNull {  match.find(it)?.destructured }
+            .count { (rangeStart, rangeEnd, char, password) ->
+                isValid(password, char, rangeStart.toInt()..rangeEnd.toInt())}
     }
 
     private fun isValid(password: String, char: String, range: IntRange): Boolean {
@@ -23,4 +19,8 @@ object Day02 {
         return lines.count()
     }
 
+    private fun isValid2(password: String, char: String, firstChar: Int, secondChar: Int): Boolean {
+
+        return
+    }
 }
