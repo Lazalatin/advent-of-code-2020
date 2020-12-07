@@ -18,6 +18,6 @@ internal class Day02Test {
 
     @Test
     fun solves2() {
-        //assertThat(cut.solve2(testData)).isEqualTo(1)
+        assertThat(cut.solve2(testData)).isEqualTo(1)
     }
 }
